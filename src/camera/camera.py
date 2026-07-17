@@ -11,7 +11,7 @@ class Camera:
         self.cap = None
 
     def start(self):
-        self.cap = cv2.VideoCapture(self.camera_index)
+        self.cap = cv2.VideoCapture(1)
 
         if not self.cap.isOpened():
             raise Exception("Could not open camera.")

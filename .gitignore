@@ -1,38 +1,35 @@
 # Python
 __pycache__/
 *.py[cod]
-*.pyo
-*.pyd
 
 # Virtual Environment
-venv/
 .venv/
-env/
 
 # Jupyter
 .ipynb_checkpoints/
 
-# Model Files
-*.h5
-*.keras
-*.pt
-*.pth
-*.onnx
-*.ckpt
+# Environment Variables
+.env
+
+# AI Models
+models/**/*.h5
+models/**/*.keras
+models/**/*.pt
+models/**/*.pth
+models/**/*.onnx
 
 # Dataset
-dataset/raw/
 dataset/processed/
+dataset/train/
+dataset/validation/
+dataset/test/
 
-# Output
+# Outputs
 output/
-logs/
+assets/screenshots/
 
 # VS Code
 .vscode/
-
-# Environment Variables
-.env
 
 # OS Files
 .DS_Store
