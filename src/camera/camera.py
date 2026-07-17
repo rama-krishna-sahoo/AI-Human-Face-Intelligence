@@ -2,7 +2,7 @@ import cv2
 import time
 from datetime import datetime
 import os
-
+from src.detection.detector import FaceDetector
 
 class Camera:
 
@@ -15,6 +15,8 @@ class Camera:
 
         if not self.cap.isOpened():
             raise Exception("Could not open camera.")
+
+        self.face_detector = FaceDetector()
 
         print("Camera Started Successfully.")
 
@@ -34,7 +36,33 @@ class Camera:
 
             # Mirror the camera
             frame = cv2.flip(frame, 1)
+            
+            detections = self.face_detector.detect_faces(frame)
 
+            for face in detections:
+
+                x, y, w, h = face["bbox"]
+
+                confidence = face["confidence"]
+
+                cv2.rectangle(
+                    frame,
+                    (x, y),
+                    (x + w, y + h),
+                    (0, 255, 0),
+                    2
+                )
+
+                cv2.putText(
+                    frame,
+                    f"{confidence:.2f}",
+                    (x, y - 10),
+                    cv2.FONT_HERSHEY_SIMPLEX,
+                    0.6,
+                    (0, 255, 0),
+                    2
+                )
+                        
             # ---------------------------------------
             # Resolution
             # ---------------------------------------
